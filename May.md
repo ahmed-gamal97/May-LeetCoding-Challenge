@@ -31,7 +31,7 @@ class Solution:
                 l = mid + 1
         
 ```
-### Complexity: O(log(n)) , space: o(1)
+### Complexity: O(log(n)) , space: O(1)
 ----------------------
 2) https://leetcode.com/problems/jewels-and-stones/ </br>
 You're given strings J representing the types of stones that are jewels, and S representing the stones you have. Each character in S is a type of stone you have.  You want to know how many of the stones you have are also jewels. The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so "a" is considered a different type of stone from "A".
@@ -55,7 +55,7 @@ class Solution:
         return stones_jewels_couunter
         
 ```
-### Complexity: O(n) , space: o(n)
+### Complexity: O(n) , space: O(n)
 -----------------------
 
 3) https://leetcode.com/problems/ransom-note/ </br>
@@ -85,5 +85,23 @@ class Solution:
         return len(ransom_dict) == 0
         
 ```
-### Complexity: O(n) , space: o(n)
+### Complexity: O(n) , space: O(n)
+-----------------------
+-----------------------
+
+4) https://leetcode.com/problems/number-complement/ </br>
+Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
+
+```python
+class Solution:
+    def findComplement(self, num: int) -> int:
+        
+        number_in_binary = bin(num)[2:]
+        
+        number_in_binary = ['1' if char == '0' else '0' for char in number_in_binary]
+        
+        return int(''.join(number_in_binary) , 2)
+
+```
+### Complexity: O(num of digits) , space: O(num of digits)
 -----------------------
