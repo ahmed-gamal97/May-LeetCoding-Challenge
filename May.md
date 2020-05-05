@@ -87,8 +87,6 @@ class Solution:
 ```
 ### Complexity: O(n) , space: O(n)
 -----------------------
------------------------
-
 4) https://leetcode.com/problems/number-complement/ </br>
 Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
 
@@ -104,4 +102,27 @@ class Solution:
 
 ```
 ### Complexity: O(num of digits) , space: O(num of digits)
+-----------------------
+5) https://leetcode.com/problems/first-unique-character-in-a-string/ </br>
+Given a string, find the first non-repeating character in it and return it's index. If it doesn't exist, return -1.
+
+```python
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        
+        char_counter = {}
+        
+        for char in s:
+            if char in char_counter:
+                char_counter[char] += 1
+            else:
+                char_counter[char] = 1
+                
+        for ind,char in enumerate(s):
+            if char_counter[char] == 1:
+                return ind
+        
+        return -1
+```
+### Complexity: O(len(s)) , space: O(len(s))
 -----------------------
