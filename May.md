@@ -126,3 +126,22 @@ class Solution:
 ```
 ### Complexity: O(len(s)) , space: O(len(s))
 -----------------------
+6) https://leetcode.com/problems/majority-element/ </br>
+Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times. You may assume that the array is non-empty and the majority element always exist in the array.
+```python
+import collections
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        
+        num_freq = collections.Counter(nums)
+        
+        length = len(nums)
+        half = length // 2
+        
+        for num in nums:
+            if num_freq[num] > half:
+                return num
+```
+### Complexity: O(len(nums)) , space: O(len(nums))
+-----------------------
