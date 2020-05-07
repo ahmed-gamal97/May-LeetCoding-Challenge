@@ -145,3 +145,49 @@ class Solution:
 ```
 ### Complexity: O(len(nums)) , space: O(len(nums))
 -----------------------
+7) https://leetcode.com/problems/cousins-in-binary-tree/ </br>
+- In a binary tree, the root node is at depth 0, and children of each depth k node are at depth k+1.
+- Two nodes of a binary tree are cousins if they have the same depth, but have different parents.
+- We are given the root of a binary tree with unique values, and the values x and y of two different nodes in the tree.
+- Return true if and only if the nodes corresponding to the values x and y are cousins.
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isCousins(self, root: TreeNode, x: int, y: int) -> bool:
+        
+        if root.val in [x,y]:
+            return False
+        
+        depth = 0
+        parent = None
+        queue = [(root,parent,depth)]
+
+        nodes_info = []
+        
+        # BFS
+        while queue:
+            
+            node,_,depth = queue.pop(0)
+            
+            if node.left:
+                queue.append((node.left, node, depth+1)) 
+                if node.left.val in [x,y]:
+                    nodes_info.append((node.val, depth+1))
+                    
+            if node.right:
+                queue.append((node.right, node, depth+1))
+                if node.right.val in [x,y]:
+                    nodes_info.append((node.val, depth+1))
+
+            if len(nodes_info) == 2:
+                break
+                
+        return nodes_info[0][1] == nodes_info[1][1] and nodes_info[0][0] != nodes_info[1][0]
+```
+### Complexity: O(#nodes)) , space: O(#nodes)
+-----------------------
