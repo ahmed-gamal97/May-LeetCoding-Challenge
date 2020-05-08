@@ -191,3 +191,30 @@ class Solution:
 ```
 ### Complexity: O(#nodes)) , space: O(#nodes)
 -----------------------
+8) https://leetcode.com/problems/check-if-it-is-a-straight-line/ </br>
+You are given an array coordinates, coordinates[i] = [x, y], where [x, y] represents the coordinate of a point. Check if these points make a straight line in the XY plane.
+```python
+class Solution(object):
+    def checkStraightLine(self, coordinates):
+        """
+        :type coordinates: List[List[int]]
+        :rtype: bool
+        """
+        try:
+            slope = (coordinates[1][1] - coordinates[0][1]) / (coordinates[1][0] - coordinates[0][0])
+        except ZeroDivisionError:
+            return False
+        
+        for ind in range(len(coordinates)-1, 0, -1):
+            try:
+                to_cal = (coordinates[ind][1] - coordinates[ind-1][1]) / (coordinates[ind][0] - coordinates[ind-1][0])
+                if slope != to_cal:
+                    return False
+            
+            except ZeroDivisionError:
+                return False
+            
+        return True
+```
+### Complexity: O(n)) , space: O(1)
+-----------------------
