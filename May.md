@@ -189,7 +189,7 @@ class Solution:
                 
         return nodes_info[0][1] == nodes_info[1][1] and nodes_info[0][0] != nodes_info[1][0]
 ```
-### Complexity: O(#nodes)) , space: O(#nodes)
+### Complexity: O(#nodes) , space: O(#nodes)
 -----------------------
 8) https://leetcode.com/problems/check-if-it-is-a-straight-line/ </br>
 You are given an array coordinates, coordinates[i] = [x, y], where [x, y] represents the coordinate of a point. Check if these points make a straight line in the XY plane.
@@ -216,5 +216,42 @@ class Solution(object):
             
         return True
 ```
-### Complexity: O(n)) , space: O(1)
+### Complexity: O(n) , space: O(1)
+-----------------------
+9) https://leetcode.com/problems/valid-perfect-square/ </br>
+- Given a positive integer num, write a function which returns True if num is a perfect square else False.
+- Note: Do not use any built-in library function such as sqrt.
+```python
+class Solution(object):
+    def isPerfectSquare(self, num):
+        """
+        :type num: int
+        :rtype: bool
+        """
+        start = 0
+        end = num      
+        
+        while start <= end:
+            
+            mid = (start + end) // 2
+            test = mid ** 2
+            
+            if test == num:
+                return True
+            elif test > num:
+                end = mid - 1
+            else:
+                start = mid + 1
+                
+        return False
+    
+        # Math Trick for Square number is 1+3+5+ ... +(2n-1)
+        def Math(self, num):
+            i = 1
+            while (num>0):
+                num -= i
+                i += 2       
+            return num == 0
+```
+### Complexity: O(log(n)) , space: O(1)
 -----------------------
