@@ -291,3 +291,63 @@ class Solution:
 ```
 ### Complexity: O(n) , space: O(n)
 -----------------------
+11) https://leetcode.com/problems/flood-fill/ </br>
+- An image is represented by a 2-D array of integers, each integer representing the pixel value of the image (from 0 to 65535).
+- Given a coordinate (sr, sc) representing the starting pixel (row and column) of the flood fill, and a pixel value newColor, "flood fill" the image.
+- To perform a "flood fill", consider the starting pixel, plus any pixels connected 4-directionally to the starting pixel of the same color as the starting pixel, plus any pixels connected 4-directionally to those pixels (also with the same color as the starting pixel), and so on. Replace the color of all of the aforementioned pixels with the newColor.
+- At the end, return the modified image.
+If the town judge exists and can be identified, return the label of the town judge.  Otherwise, return -1.
+```python
+class Solution(object):
+    def floodFill(self, image, sr, sc, newColor):
+        """
+        :type image: List[List[int]]
+        :type sr: int
+        :type sc: int
+        :type newColor: int
+        :rtype: List[List[int]]
+        """
+        
+        # BFS
+        
+        MIN_ROW = 0
+        MIN_COL = 0
+        
+        MAX_ROW = len(image)
+        MAX_COL = len(image[0])
+        
+        STARTING_PIXEL = image[sr][sc]
+        
+        queue = [(sr,sc)]
+        mem = {(sr,sc) : 0}
+        
+        while len(queue) != 0 :
+            
+            r,c = queue.pop(0)
+            
+            if r-1 >= MIN_ROW and image[r-1][c] == STARTING_PIXEL and (r-1,c) not in mem:
+                image[r-1][c] = newColor
+                queue.append((r-1,c))
+                mem[(r-1,c)] = 1
+                
+            if r+1 < MAX_ROW and image[r+1][c] == STARTING_PIXEL and (r+1,c) not in mem:
+                image[r+1][c] = newColor
+                queue.append((r+1,c))
+                mem[(r+1,c)] = 1
+                
+            if c-1 >= MIN_COL and image[r][c-1] == STARTING_PIXEL and (r,c-1) not in mem:
+                image[r][c-1] = newColor
+                queue.append((r,c-1))
+                mem[(r,c-1)] = 1
+
+            if c+1 < MAX_COL and image[r][c+1] == STARTING_PIXEL and (r,c+1) not in mem:
+                image[r][c+1] = newColor
+                queue.append((r,c+1))
+                mem[(r,c+1)] = 1
+            
+        image[sr][sc] = newColor
+
+        return image
+```
+### Complexity: O(n*m) , space: O(n*m)
+-----------------------
