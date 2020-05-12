@@ -351,3 +351,38 @@ class Solution(object):
 ```
 ### Complexity: O(n*m) , space: O(n*m)
 -----------------------
+12) https://leetcode.com/problems/single-element-in-a-sorted-array/ </br>
+- You are given a sorted array consisting of only integers where every element appears exactly twice, except for one element which appears exactly once. Find this single element that appears only once.
+- Note: Your solution should run in O(log n) time and O(1) space.
+```python
+class Solution:
+    def singleNonDuplicate(self, nums: List[int]) -> int:
+        
+        length = len(nums)
+        
+        if length == 1:
+            return nums[0]
+        
+        l = 0
+        r = length - 1
+        
+        while l < r:
+            
+            mid = (r + l) // 2
+            
+            if mid & 1: # is odd
+                if nums[mid] == nums[mid-1]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+                    
+            else: # is even
+                if nums[mid] == nums[mid+1]:
+                    l = mid + 2
+                else:
+                    r = mid
+                    
+        return nums[r]
+```
+### Complexity: O(log n) , space: O(1)
+-----------------------
