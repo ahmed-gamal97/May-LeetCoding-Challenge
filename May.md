@@ -386,3 +386,39 @@ class Solution:
 ```
 ### Complexity: O(log n) , space: O(1)
 -----------------------
+13) https://leetcode.com/problems/remove-k-digits/ </br>
+- Given a non-negative integer num represented as a string, remove k digits from the number so that the new number is the smallest possible. 
+- Note:
+- The length of num is less than 10002 and will be ≥ k.
+- The given num does not contain any leading zero.
+
+```python
+class Solution:
+    def removeKdigits(self, num: str, k: int) -> str:
+       
+        length = len(num)
+        
+        if k == length:
+            return '0'
+        
+        stack = []
+        
+        for i in range(length):
+        # remove the tail of stack if the element is smaller than the stack tail
+            while k and stack and num[i] < stack[-1]:
+                stack.pop(-1)
+                k -= 1
+            stack.append(num[i])
+
+        # If still k elements left to remove.
+        while k > 0 and stack:
+            stack.pop(-1)
+            k -= 1
+            
+        # Remove leading zeros
+        res = ''.join(stack).lstrip("0")
+        
+        return res if res else '0'
+        
+```
+### Complexity: O(n) , space: O(n)
