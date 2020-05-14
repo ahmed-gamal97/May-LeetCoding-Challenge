@@ -422,3 +422,66 @@ class Solution:
         
 ```
 ### Complexity: O(n) , space: O(n)
+-----------------------
+14) https://leetcode.com/problems/implement-trie-prefix-tree/
+ </br>
+- Implement a trie with insert, search, and startsWith methods.
+- You may assume that all inputs are consist of lowercase letters a-z.
+- All inputs are guaranteed to be non-empty strings.
+
+```python
+class Trie:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.children = {}
+
+    def insert(self, word: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
+        cur = self
+        for char in word:
+            if char not in cur.children:
+                cur.children[char] = Trie()
+            cur = cur.children[char]
+        cur.children['.'] = '/0' 
+
+    def search(self, word: str) -> bool:
+        """
+        Returns if the word is in the trie.
+        """
+        curr = self
+        if len(word) == 0:
+            return True
+        for char in word:
+            if char in curr.children:
+                curr = curr.children[char]
+            else:
+                return False
+        return '.' in curr.children
+
+    def startsWith(self, prefix: str) -> bool:
+        """
+        Returns if there is any word in the trie that starts with the given prefix.
+        """
+        curr = self
+        if len(prefix) == 0:
+            return True
+        for char in prefix:
+            if char in curr.children:
+                curr = curr.children[char]
+            else:
+                return False
+        return True
+
+# Your Trie object will be instantiated and called as such:
+# obj = Trie()
+# obj.insert(word)
+# param_2 = obj.search(word)
+# param_3 = obj.startsWith(prefix)
+```
+### Complexity: O(n) , space: O(n)
+-----------------------
