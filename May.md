@@ -485,3 +485,40 @@ class Trie:
 ```
 ### Complexity: O(n) , space: O(n)
 -----------------------
+15) https://leetcode.com/problems/odd-even-linked-list/
+ </br>
+- Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
+- You should try to do it in place. The program should run in O(1) space complexity and O(nodes) time complexity.
+
+```python
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+        
+        if head and head.next:
+            odd_ptr = head
+            even_ptr = head.next
+            first_even_ptr = head.next
+        else:
+            return head
+        
+        
+        while odd_ptr.next and odd_ptr.next.next:
+            odd_ptr.next = odd_ptr.next.next
+            odd_ptr = odd_ptr.next
+            if even_ptr.next and even_ptr.next.next:
+                even_ptr.next = even_ptr.next.next
+                even_ptr = even_ptr.next
+            
+        odd_ptr.next = first_even_ptr
+        even_ptr.next = None
+        
+        return head
+```
+### Complexity: O(n) , space: O(1)
+-----------------------
