@@ -485,7 +485,7 @@ class Trie:
 ```
 ### Complexity: O(n) , space: O(n)
 -----------------------
-15) https://leetcode.com/problems/odd-even-linked-list/
+16) https://leetcode.com/problems/odd-even-linked-list/
  </br>
 - Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
 - You should try to do it in place. The program should run in O(1) space complexity and O(nodes) time complexity.
@@ -521,4 +521,41 @@ class Solution:
         return head
 ```
 ### Complexity: O(n) , space: O(1)
+-----------------------
+17) https://leetcode.com/problems/find-all-anagrams-in-a-string/
+ </br>
+- Given a string s and a non-empty string p, find all the start indices of p's anagrams in s.
+- Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.
+- The order of output does not matter
+
+```python
+import collections
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        
+        myDictP=collections.Counter(p)
+        myDictS=collections.Counter(s[:len(p)])
+        
+        output=[]
+        i=0
+        j=len(p)
+        s_length = len(s)
+        
+        while j<= s_length:
+            
+            if myDictS==myDictP:
+                output.append(i)
+
+            myDictS[s[i]]-=1
+            if myDictS[s[i]]<=0:
+                myDictS.pop(s[i])
+                
+            if j < s_length:    
+                 myDictS[s[j]]+=1
+            j+=1
+            i+=1
+            
+        return output
+```
+### Complexity: O(len(s)) , space: O(len(p))
 -----------------------
