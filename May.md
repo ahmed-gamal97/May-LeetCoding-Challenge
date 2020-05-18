@@ -559,3 +559,36 @@ class Solution:
 ```
 ### Complexity: O(len(s)) , space: O(len(p))
 -----------------------
+18) https://leetcode.com/problems/permutation-in-string/
+ </br>
+- Given two strings s1 and s2, write a function to return true if s2 contains the permutation of s1. In other words, one of the first string's permutations is the substring of the second string.
+
+```python
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        
+        myDicts1=collections.Counter(s1)
+        myDicts2=collections.Counter(s2[:len(s1)])
+        
+        i=0
+        j=len(s1)
+        s_length = len(s2)
+        
+        while j <= s_length:
+            
+            if myDicts1==myDicts2:
+                return True
+
+            myDicts2[s2[i]]-=1
+            if myDicts2[s2[i]] <= 0:
+                myDicts2.pop(s2[i])
+                
+            if j < s_length:    
+                 myDicts2[s2[j]]+=1
+            j+=1
+            i+=1
+            
+        return False
+```
+### Complexity: O(len(s1)) , space: O(len(s2))
+-----------------------
